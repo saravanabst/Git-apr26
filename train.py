@@ -1,5 +1,5 @@
 import joblib
-from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
@@ -11,15 +11,15 @@ def main():
         data.data, data.target, test_size=0.2, random_state=42
     )
 
-    model = LogisticRegression(max_iter=200, solver="liblinear")
+    model = DecisionTreeClassifier(random_state=42)
     model.fit(X_train, y_train)
 
     predictions = model.predict(X_test)
     accuracy = accuracy_score(y_test, predictions)
     print(f"Test accuracy: {accuracy:.4f}")
 
-    joblib.dump(model, "logistic_regression_model.joblib")
-    print("Model saved to logistic_regression_model.joblib")
+    joblib.dump(model, "decision_tree_model.joblib")
+    print("Model saved to decision_tree_model.joblib")
 
 
 if __name__ == "__main__":
